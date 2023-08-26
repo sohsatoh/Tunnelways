@@ -1,6 +1,16 @@
 import Combine
 import SwiftUI
 
+enum Keys {
+    static let enableAppStatusCheck = "enableAppStatusCheck"
+    static let enableAutoDisconnection = "enableAutoDisconnection"
+    static let applicationName = "applicationName"
+    static let enableAutoConnection = "enableAutoConnection"
+    static let vpnName = "vpnName"
+    static let enableBypassForSSID = "enableBypassForSSID"
+    static let ssid = "ssid"
+}
+
 final class SettingsStore: ObservableObject {
     private let cancellable: Cancellable
     private let defaults: UserDefaults

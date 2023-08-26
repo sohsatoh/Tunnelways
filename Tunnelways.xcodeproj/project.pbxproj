@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF2EDF4A2A9A83B20069F6D6 /* AppStatusPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF492A9A83B20069F6D6 /* AppStatusPane.swift */; };
+		CF2EDF4C2A9A84BA0069F6D6 /* WifiStatusPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF4B2A9A84BA0069F6D6 /* WifiStatusPane.swift */; };
+		CF2EDF502A9A8BCF0069F6D6 /* VPNRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF4F2A9A8BCF0069F6D6 /* VPNRequestType.swift */; };
 		CFD16C442A93D03F0025F473 /* TunnelwaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C432A93D03F0025F473 /* TunnelwaysApp.swift */; };
 		CFD16C462A93D03F0025F473 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C452A93D03F0025F473 /* ContentView.swift */; };
 		CFD16C482A93D03F0025F473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFD16C472A93D03F0025F473 /* Assets.xcassets */; };
 		CFD16C4B2A93D03F0025F473 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFD16C4A2A93D03F0025F473 /* Preview Assets.xcassets */; };
 		CFD16C532A93D0780025F473 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C522A93D0780025F473 /* SettingsStore.swift */; };
-		CFD16C552A93D0980025F473 /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C542A93D0980025F473 /* enums.swift */; };
-		CFD16C582A93D0CA0025F473 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C572A93D0CA0025F473 /* GeneralSettingsView.swift */; };
+		CFD16C582A93D0CA0025F473 /* VPNSettingsPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C572A93D0CA0025F473 /* VPNSettingsPane.swift */; };
 		CFD16C5A2A93D0DD0025F473 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C592A93D0DD0025F473 /* SettingsView.swift */; };
 		CFD16C5C2A93D1030025F473 /* ViewWillDisapperExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C5B2A93D1030025F473 /* ViewWillDisapperExtension.swift */; };
 		CFD16C5E2A93D12A0025F473 /* VPNUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C5D2A93D12A0025F473 /* VPNUtil.swift */; };
@@ -21,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF2EDF492A9A83B20069F6D6 /* AppStatusPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStatusPane.swift; sourceTree = "<group>"; };
+		CF2EDF4B2A9A84BA0069F6D6 /* WifiStatusPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiStatusPane.swift; sourceTree = "<group>"; };
+		CF2EDF4F2A9A8BCF0069F6D6 /* VPNRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNRequestType.swift; sourceTree = "<group>"; };
 		CFD16C402A93D03F0025F473 /* Tunnelways.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tunnelways.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD16C432A93D03F0025F473 /* TunnelwaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelwaysApp.swift; sourceTree = "<group>"; };
 		CFD16C452A93D03F0025F473 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -28,8 +33,7 @@
 		CFD16C4A2A93D03F0025F473 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CFD16C4C2A93D03F0025F473 /* Tunnelways.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tunnelways.entitlements; sourceTree = "<group>"; };
 		CFD16C522A93D0780025F473 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
-		CFD16C542A93D0980025F473 /* enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
-		CFD16C572A93D0CA0025F473 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
+		CFD16C572A93D0CA0025F473 /* VPNSettingsPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNSettingsPane.swift; sourceTree = "<group>"; };
 		CFD16C592A93D0DD0025F473 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CFD16C5B2A93D1030025F473 /* ViewWillDisapperExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWillDisapperExtension.swift; sourceTree = "<group>"; };
 		CFD16C5D2A93D12A0025F473 /* VPNUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNUtil.swift; sourceTree = "<group>"; };
@@ -48,6 +52,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF2EDF482A9A83280069F6D6 /* Panes */ = {
+			isa = PBXGroup;
+			children = (
+				CFD16C572A93D0CA0025F473 /* VPNSettingsPane.swift */,
+				CF2EDF492A9A83B20069F6D6 /* AppStatusPane.swift */,
+				CF2EDF4B2A9A84BA0069F6D6 /* WifiStatusPane.swift */,
+			);
+			path = Panes;
+			sourceTree = "<group>";
+		};
+		CF2EDF4D2A9A8A710069F6D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CFD16C592A93D0DD0025F473 /* SettingsView.swift */,
+				CFD16C5B2A93D1030025F473 /* ViewWillDisapperExtension.swift */,
+				CF2EDF482A9A83280069F6D6 /* Panes */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF2EDF4E2A9A8BB70069F6D6 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				CF2EDF4F2A9A8BCF0069F6D6 /* VPNRequestType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		CFD16C372A93D03F0025F473 = {
 			isa = PBXGroup;
 			children = (
@@ -69,12 +101,13 @@
 			children = (
 				CFD16C432A93D03F0025F473 /* TunnelwaysApp.swift */,
 				CFD16C5D2A93D12A0025F473 /* VPNUtil.swift */,
-				CFD16C562A93D0AD0025F473 /* Settings */,
 				CFD16C452A93D03F0025F473 /* ContentView.swift */,
-				CFD16C472A93D03F0025F473 /* Assets.xcassets */,
-				CFD16C4C2A93D03F0025F473 /* Tunnelways.entitlements */,
+				CF2EDF4E2A9A8BB70069F6D6 /* Enums */,
+				CFD16C562A93D0AD0025F473 /* Settings */,
 				CFD16C612A93D2350025F473 /* ja.lproj */,
 				CFD16C5F2A93D22C0025F473 /* en.lproj */,
+				CFD16C4C2A93D03F0025F473 /* Tunnelways.entitlements */,
+				CFD16C472A93D03F0025F473 /* Assets.xcassets */,
 				CFD16C492A93D03F0025F473 /* Preview Content */,
 			);
 			path = Tunnelways;
@@ -91,11 +124,8 @@
 		CFD16C562A93D0AD0025F473 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				CFD16C542A93D0980025F473 /* enums.swift */,
+				CF2EDF4D2A9A8A710069F6D6 /* Views */,
 				CFD16C522A93D0780025F473 /* SettingsStore.swift */,
-				CFD16C572A93D0CA0025F473 /* GeneralSettingsView.swift */,
-				CFD16C592A93D0DD0025F473 /* SettingsView.swift */,
-				CFD16C5B2A93D1030025F473 /* ViewWillDisapperExtension.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -181,11 +211,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFD16C462A93D03F0025F473 /* ContentView.swift in Sources */,
-				CFD16C582A93D0CA0025F473 /* GeneralSettingsView.swift in Sources */,
+				CFD16C582A93D0CA0025F473 /* VPNSettingsPane.swift in Sources */,
 				CFD16C5E2A93D12A0025F473 /* VPNUtil.swift in Sources */,
+				CF2EDF4A2A9A83B20069F6D6 /* AppStatusPane.swift in Sources */,
+				CF2EDF4C2A9A84BA0069F6D6 /* WifiStatusPane.swift in Sources */,
 				CFD16C532A93D0780025F473 /* SettingsStore.swift in Sources */,
+				CF2EDF502A9A8BCF0069F6D6 /* VPNRequestType.swift in Sources */,
 				CFD16C5A2A93D0DD0025F473 /* SettingsView.swift in Sources */,
-				CFD16C552A93D0980025F473 /* enums.swift in Sources */,
 				CFD16C442A93D03F0025F473 /* TunnelwaysApp.swift in Sources */,
 				CFD16C5C2A93D1030025F473 /* ViewWillDisapperExtension.swift in Sources */,
 			);
