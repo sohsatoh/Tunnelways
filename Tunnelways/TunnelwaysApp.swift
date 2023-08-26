@@ -53,7 +53,7 @@ struct TunnelwaysApp: App {
                 menu.autoenablesItems = false
                 menu.addItem(
                     withTitle: NSLocalizedString("TOGGLE", comment: "Enable/Disable Tunnelways"),
-                    action: #selector(toggle),
+                    action: #selector(toggleAppState),
                     keyEquivalent: ""
                 )
                 menu.addItem(
@@ -179,7 +179,7 @@ struct TunnelwaysApp: App {
             }
         }
 
-        private func updateStatusItem() {
+        private func updateStatusBarMenuItem() {
             DispatchQueue.main.async {
                 self.statusItem.button!.appearsDisabled = !self.isEnabled
 
@@ -201,7 +201,7 @@ struct TunnelwaysApp: App {
             }
         }
 
-        @objc func toggle() {
+        @objc func toggleAppState() {
             isEnabled = !isEnabled
 
             if isEnabled {
@@ -210,7 +210,7 @@ struct TunnelwaysApp: App {
                 unregisterObservers()
             }
 
-            updateStatusItem()
+            updateStatusBarMenuItem()
         }
 
         private func disableAppFor(minutes: Int) {
@@ -218,11 +218,11 @@ struct TunnelwaysApp: App {
             let untilDate = Calendar.current.date(byAdding: .minute, value: minutes, to: day)!
             disabledUntilDate = untilDate
 
-            toggle()
+            toggleAppState()
 
             DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(minutes * 60)) {
                 if !self.isEnabled, self.disabledUntilDate != nil {
-                    self.toggle()
+                    self.toggleAppState()
                     self.sendNotification(body: NSLocalizedString("RE_ENABLED", comment: ""))
                 }
             }
