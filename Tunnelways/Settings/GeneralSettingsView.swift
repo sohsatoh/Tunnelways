@@ -2,6 +2,7 @@ import SwiftUI
 
 struct GeneralSettingsView: View {
     @EnvironmentObject var settings: SettingsStore
+    private let vpnServices = VPNUtil.sharedInstance.getAllVPNServices()
 
     var body: some View {
         Form {
@@ -34,7 +35,12 @@ struct GeneralSettingsView: View {
                         NSLocalizedString("ENABLE_AUTO_CONNECT", comment: ""),
                         isOn: $settings.enableAutoConnection)
                     Divider().padding(5)
-                    TextField(NSLocalizedString("VPN_NAME", comment: ""), text: $settings.vpnName)
+                    Picker(NSLocalizedString("VPN_NAME", comment: ""), selection: $settings.vpnName)
+                    {
+                        ForEach(vpnServices.keys.sorted(), id: \.self) { period in
+                            Text(period)
+                        }
+                    }
                 }
             }
             .padding(20)
