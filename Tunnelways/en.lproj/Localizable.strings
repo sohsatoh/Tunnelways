@@ -1,0 +1,29 @@
+/*
+  Localizable.strings
+  Tunnelways
+
+  Created by so.sato on 2022/08/22.
+
+*/
+
+"TOGGLE" = "Toggle Tunnelways";
+"DISABLE_APP_FOR_SPECIFIC_TIME" = "Disable app for specific time";
+"SETTINGS" = "Settings";
+"QUIT" = "Quit Tunnelways";
+
+"NO_VPN_TEXT" = "Detected no VPN connection\nDo you want to connect to ";
+
+"DISABLED_UNTIL" = "App is disabled until ";
+"APP_DISABLED" = "App is disabled";
+
+"RE_ENABLED" = "App is re-enabled";
+
+"DISABLE_ALERT_TEXT" = "Enter how long you want to disable the app (in minutes)";
+
+// Settings
+"ENABLE_STATUS_CHECK" = "Enable Application Status Check";
+"ENABLE_AUTO_DISCONNECTION" = "Automatically Disconnect VPN When Application Exit (Requires App Status Check)";
+"APP_NAME_FOR_CHECK" = "Application Name (Regex): ";
+"ENABLE_BYPASS_SSID" = "Enable Bypass For Checking State For Specific SSID";
+"ENABLE_AUTO_CONNECT" = "Automatically Connect To VPN (Skip Alert)";
+"VPN_NAME" = "VPN Name (Required): ";

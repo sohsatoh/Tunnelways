@@ -1,0 +1,29 @@
+/*
+  Localizable.strings
+  Tunnelways
+
+  Created by so.sato on 2022/08/22.
+
+*/
+
+"TOGGLE" = "有効化/無効化";
+"DISABLE_APP_FOR_SPECIFIC_TIME" = "特定時間無効化";
+"SETTINGS" = "設定";
+"QUIT" = "終了";
+
+"NO_VPN_TEXT" = "VPN接続が切れました\n接続しますか?\n接続先: ";
+
+"DISABLED_UNTIL" = "有効になるまでの時間: ";
+"APP_DISABLED" = "無効化されています";
+
+"RE_ENABLED" = "有効になりました";
+
+"DISABLE_ALERT_TEXT" = "無効化する分数を入力してください";
+
+// Settings
+"ENABLE_STATUS_CHECK" = "アプリの起動状態をチェック";
+"ENABLE_AUTO_DISCONNECTION" = "アプリ終了時に自動的にVPNを切断 (上のオプションが有効になっている必要があります)";
+"APP_NAME_FOR_CHECK" = "アプリ名 (Regex): ";
+"ENABLE_BYPASS_SSID" = "特定のSSIDでチェックをバイパス";
+"ENABLE_AUTO_CONNECT" = "自動的にVPNに接続 (アラートをスキップ)";
+"VPN_NAME" = "VPN名 (必要): ";
