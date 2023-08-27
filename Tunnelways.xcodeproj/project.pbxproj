@@ -11,6 +11,8 @@
 		CF2EDF4C2A9A84BA0069F6D6 /* WifiStatusPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF4B2A9A84BA0069F6D6 /* WifiStatusPane.swift */; };
 		CF2EDF502A9A8BCF0069F6D6 /* VPNRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF4F2A9A8BCF0069F6D6 /* VPNRequestType.swift */; };
 		CF2EDF542A9B0C7C0069F6D6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF532A9B0C7C0069F6D6 /* Logger.swift */; };
+		CF2EDF572A9B28080069F6D6 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = CF2EDF562A9B28080069F6D6 /* OrderedCollections */; };
+		CF2EDF5B2A9B394E0069F6D6 /* IPAddr.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF5A2A9B394E0069F6D6 /* IPAddr.swift */; };
 		CFD16C442A93D03F0025F473 /* TunnelwaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C432A93D03F0025F473 /* TunnelwaysApp.swift */; };
 		CFD16C462A93D03F0025F473 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C452A93D03F0025F473 /* ContentView.swift */; };
 		CFD16C482A93D03F0025F473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFD16C472A93D03F0025F473 /* Assets.xcassets */; };
@@ -28,6 +30,7 @@
 		CF2EDF4B2A9A84BA0069F6D6 /* WifiStatusPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiStatusPane.swift; sourceTree = "<group>"; };
 		CF2EDF4F2A9A8BCF0069F6D6 /* VPNRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNRequestType.swift; sourceTree = "<group>"; };
 		CF2EDF532A9B0C7C0069F6D6 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		CF2EDF5A2A9B394E0069F6D6 /* IPAddr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAddr.swift; sourceTree = "<group>"; };
 		CFD16C402A93D03F0025F473 /* Tunnelways.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tunnelways.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD16C432A93D03F0025F473 /* TunnelwaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelwaysApp.swift; sourceTree = "<group>"; };
 		CFD16C452A93D03F0025F473 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF2EDF572A9B28080069F6D6 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +86,22 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		CF2EDF582A9B39220069F6D6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CF2EDF532A9B0C7C0069F6D6 /* Logger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CF2EDF592A9B393D0069F6D6 /* IPAddrs */ = {
+			isa = PBXGroup;
+			children = (
+				CF2EDF5A2A9B394E0069F6D6 /* IPAddr.swift */,
+			);
+			path = IPAddrs;
+			sourceTree = "<group>";
+		};
 		CFD16C372A93D03F0025F473 = {
 			isa = PBXGroup;
 			children = (
@@ -103,8 +123,9 @@
 			children = (
 				CFD16C432A93D03F0025F473 /* TunnelwaysApp.swift */,
 				CFD16C5D2A93D12A0025F473 /* VPNUtil.swift */,
-				CF2EDF532A9B0C7C0069F6D6 /* Logger.swift */,
 				CFD16C452A93D03F0025F473 /* ContentView.swift */,
+				CF2EDF592A9B393D0069F6D6 /* IPAddrs */,
+				CF2EDF582A9B39220069F6D6 /* Utils */,
 				CF2EDF4E2A9A8BB70069F6D6 /* Enums */,
 				CFD16C562A93D0AD0025F473 /* Settings */,
 				CFD16C612A93D2350025F473 /* ja.lproj */,
@@ -157,6 +178,9 @@
 			dependencies = (
 			);
 			name = Tunnelways;
+			packageProductDependencies = (
+				CF2EDF562A9B28080069F6D6 /* OrderedCollections */,
+			);
 			productName = Tunnelways;
 			productReference = CFD16C402A93D03F0025F473 /* Tunnelways.app */;
 			productType = "com.apple.product-type.application";
@@ -186,6 +210,9 @@
 				ja,
 			);
 			mainGroup = CFD16C372A93D03F0025F473;
+			packageReferences = (
+				CF2EDF552A9B28080069F6D6 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = CFD16C412A93D03F0025F473 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -224,6 +251,7 @@
 				CFD16C5A2A93D0DD0025F473 /* SettingsView.swift in Sources */,
 				CFD16C442A93D03F0025F473 /* TunnelwaysApp.swift in Sources */,
 				CFD16C5C2A93D1030025F473 /* ViewWillDisapperExtension.swift in Sources */,
+				CF2EDF5B2A9B394E0069F6D6 /* IPAddr.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +458,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CF2EDF552A9B28080069F6D6 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CF2EDF562A9B28080069F6D6 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF2EDF552A9B28080069F6D6 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CFD16C382A93D03F0025F473 /* Project object */;
 }

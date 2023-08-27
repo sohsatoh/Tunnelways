@@ -2,6 +2,7 @@ import Cocoa
 import CoreWLAN
 import Foundation
 import Network
+import OrderedCollections
 import SystemConfiguration
 
 extension String {
@@ -19,6 +20,7 @@ class VPNUtil: NSObject {
     private var isMonitorStarted: Bool = false
     private var monitor: NWPathMonitor = .init()
     private var tokens: [NSObjectProtocol] = []
+    private var previousIfsAddrs: OrderedDictionary<String, [IPAddr]> = [:]
 
     override private init() {
         Logger.debug("VPNUtil init")
@@ -94,6 +96,23 @@ class VPNUtil: NSObject {
     private func networkStatusChanged() {
         Logger.debug("networkStatusChanged")
 
+        let ifsAddrs: OrderedDictionary<String, [IPAddr]> = getAllInterfaceIPAddresses()
+        let allArraysAreEmpty = ifsAddrs.allSatisfy { addrs in
+            addrs.value.allSatisfy { (addr: IPAddr) in
+                !addr.isLoopback && !addr.isMulticast
+            }
+        }
+        if allArraysAreEmpty {
+            Logger.debug("Could not find IP Addrs")
+            return
+        } else if ifsAddrs != previousIfsAddrs {
+            Logger.debug("ifsAddrs = ", ifsAddrs, "\n", "previousIfsAddrs = ", previousIfsAddrs)
+            previousIfsAddrs = ifsAddrs
+        } else {
+            Logger.debug("IP Addrs not changed")
+            return
+        }
+
         let settingsStore = SettingsStore()
         let enableAutoDisconnection = settingsStore.enableAutoDisconnection
         let enableBypassForSSID = settingsStore.enableBypassForSSID
@@ -116,6 +135,47 @@ class VPNUtil: NSObject {
             }()
         else { return }
         center.post(name: notificationName, object: obj)
+    }
+
+    func getAllInterfaceIPAddresses() -> OrderedDictionary<String, [IPAddr]> {
+        var ipAddresses: OrderedDictionary<String, [IPAddr]> = [:]
+
+        // Get list of all interfaces on the local machine:
+        var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil
+        guard getifaddrs(&ifaddr) == 0 else { return OrderedDictionary() }
+        guard let firstAddr = ifaddr else { return OrderedDictionary() }
+
+        // For each interface ...
+        for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
+            let interface = ifptr.pointee
+
+            // Check for IPv4 or IPv6 interface:
+            let addrFamily = interface.ifa_addr.pointee.sa_family
+            if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
+
+                // Convert interface address to a human readable string:
+                var addr = interface.ifa_addr.pointee
+                var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                getnameinfo(
+                    &addr, socklen_t(interface.ifa_addr.pointee.sa_len),
+                    &hostname, socklen_t(hostname.count),
+                    nil, socklen_t(0), NI_NUMERICHOST)
+
+                let address = String(cString: hostname)
+                let interfaceName = String(cString: interface.ifa_name)
+
+                if ipAddresses[interfaceName] == nil {
+                    ipAddresses[interfaceName] = []
+                }
+                if address != "" {
+                    ipAddresses[interfaceName]?.append(IPAddr(address: address))
+                }
+            }
+        }
+        freeifaddrs(ifaddr)
+        ipAddresses.sort()
+
+        return ipAddresses
     }
 
     func getSSID() -> String {
