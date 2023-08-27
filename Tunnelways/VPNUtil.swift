@@ -40,6 +40,13 @@ class VPNUtil: NSObject {
         monitor.start(queue: .global(qos: .background))
         isMonitorStarted = true
 
+        DistributedNotificationCenter.default().addObserver(
+            self, selector: #selector(sleepListener(_:)), name: .init("com.apple.screenIsLocked"),
+            object: nil)
+        DistributedNotificationCenter.default().addObserver(
+            self, selector: #selector(sleepListener(_:)), name: .init("com.apple.screenIsUnlocked"),
+            object: nil)
+
         let settingsStore = SettingsStore()
         let enableAppStatusCheck = settingsStore.enableAppStatusCheck
 
@@ -74,8 +81,8 @@ class VPNUtil: NSObject {
                     }
                 }
             }
-            tokens += [launchToken, exitToken]
 
+            tokens += [launchToken, exitToken]
         } else {
             // assuming the app is running
             isAppLaunched = true
@@ -91,6 +98,16 @@ class VPNUtil: NSObject {
 
         monitor.cancel()
         monitor = NWPathMonitor()
+    }
+
+    @objc private func sleepListener(_ aNotification: Notification) {
+        if aNotification.name.rawValue == "com.apple.screenIsLocked" {
+            Logger.debug("Going to sleep...")
+            unregisterObservers()
+        } else if aNotification.name.rawValue == "com.apple.screenIsLocked" {
+            Logger.debug("Woke up...")
+            registerObservers()
+        }
     }
 
     private func networkStatusChanged() {
@@ -110,7 +127,8 @@ class VPNUtil: NSObject {
             Logger.debug("Could not find IP Addrs")
             return
         } else if filteredIfsAddrs != previousIfsAddrs {
-            Logger.debug("\nifsAddrs = ", filteredIfsAddrs, "\n", "previousIfsAddrs = ", previousIfsAddrs)
+            Logger.debug(
+                "\nifsAddrs = ", filteredIfsAddrs, "\n", "previousIfsAddrs = ", previousIfsAddrs)
             previousIfsAddrs = filteredIfsAddrs
         } else {
             Logger.debug("IP Addrs not changed")
