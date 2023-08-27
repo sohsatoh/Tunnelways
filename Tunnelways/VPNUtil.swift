@@ -97,7 +97,11 @@ class VPNUtil: NSObject {
         Logger.debug("networkStatusChanged")
 
         let ifsAddrs: OrderedDictionary<String, [IPAddr]> = getAllInterfaceIPAddresses()
-        let allArraysAreEmpty = ifsAddrs.allSatisfy { addrs in
+        let filteredIfsAddrs = ifsAddrs.mapValues { value in
+            value.filter { $0.isIPv4 }
+        }
+
+        let allArraysAreEmpty = filteredIfsAddrs.allSatisfy { addrs in
             addrs.value.allSatisfy { (addr: IPAddr) in
                 !addr.isLoopback && !addr.isMulticast
             }
@@ -105,9 +109,9 @@ class VPNUtil: NSObject {
         if allArraysAreEmpty {
             Logger.debug("Could not find IP Addrs")
             return
-        } else if ifsAddrs != previousIfsAddrs {
-            Logger.debug("ifsAddrs = ", ifsAddrs, "\n", "previousIfsAddrs = ", previousIfsAddrs)
-            previousIfsAddrs = ifsAddrs
+        } else if filteredIfsAddrs != previousIfsAddrs {
+            Logger.debug("\nifsAddrs = ", filteredIfsAddrs, "\n", "previousIfsAddrs = ", previousIfsAddrs)
+            previousIfsAddrs = filteredIfsAddrs
         } else {
             Logger.debug("IP Addrs not changed")
             return
