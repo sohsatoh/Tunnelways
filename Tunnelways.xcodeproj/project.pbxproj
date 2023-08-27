@@ -10,6 +10,7 @@
 		CF2EDF4A2A9A83B20069F6D6 /* AppStatusPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF492A9A83B20069F6D6 /* AppStatusPane.swift */; };
 		CF2EDF4C2A9A84BA0069F6D6 /* WifiStatusPane.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF4B2A9A84BA0069F6D6 /* WifiStatusPane.swift */; };
 		CF2EDF502A9A8BCF0069F6D6 /* VPNRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF4F2A9A8BCF0069F6D6 /* VPNRequestType.swift */; };
+		CF2EDF542A9B0C7C0069F6D6 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2EDF532A9B0C7C0069F6D6 /* Logger.swift */; };
 		CFD16C442A93D03F0025F473 /* TunnelwaysApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C432A93D03F0025F473 /* TunnelwaysApp.swift */; };
 		CFD16C462A93D03F0025F473 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD16C452A93D03F0025F473 /* ContentView.swift */; };
 		CFD16C482A93D03F0025F473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFD16C472A93D03F0025F473 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		CF2EDF492A9A83B20069F6D6 /* AppStatusPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStatusPane.swift; sourceTree = "<group>"; };
 		CF2EDF4B2A9A84BA0069F6D6 /* WifiStatusPane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiStatusPane.swift; sourceTree = "<group>"; };
 		CF2EDF4F2A9A8BCF0069F6D6 /* VPNRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNRequestType.swift; sourceTree = "<group>"; };
+		CF2EDF532A9B0C7C0069F6D6 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		CFD16C402A93D03F0025F473 /* Tunnelways.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tunnelways.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFD16C432A93D03F0025F473 /* TunnelwaysApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelwaysApp.swift; sourceTree = "<group>"; };
 		CFD16C452A93D03F0025F473 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				CFD16C432A93D03F0025F473 /* TunnelwaysApp.swift */,
 				CFD16C5D2A93D12A0025F473 /* VPNUtil.swift */,
+				CF2EDF532A9B0C7C0069F6D6 /* Logger.swift */,
 				CFD16C452A93D03F0025F473 /* ContentView.swift */,
 				CF2EDF4E2A9A8BB70069F6D6 /* Enums */,
 				CFD16C562A93D0AD0025F473 /* Settings */,
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFD16C462A93D03F0025F473 /* ContentView.swift in Sources */,
+				CF2EDF542A9B0C7C0069F6D6 /* Logger.swift in Sources */,
 				CFD16C582A93D0CA0025F473 /* VPNSettingsPane.swift in Sources */,
 				CFD16C5E2A93D12A0025F473 /* VPNUtil.swift in Sources */,
 				CF2EDF4A2A9A83B20069F6D6 /* AppStatusPane.swift in Sources */,

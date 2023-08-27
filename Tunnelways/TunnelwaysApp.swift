@@ -80,7 +80,7 @@ struct TunnelwaysApp: App {
 
         @objc private func registerObservers() {
             if isObserverRegistered {
-                print("remove all notifications because settings changed")
+                Logger.debug("remove all notifications because settings changed")
                 unregisterObservers()
             }
             isObserverRegistered = true
@@ -135,7 +135,7 @@ struct TunnelwaysApp: App {
         }
 
         private func changeVPNState(vpnName: String, type: VPNRequestType) {
-            print("changeVPNState: \(vpnName), type: \(type)")
+            Logger.debug("changeVPNState: \(vpnName), type: \(type)")
             let vpnUtil = VPNUtil.sharedInstance
             let result = vpnUtil.changeVPNState(vpnName: vpnName, type: type)
 
@@ -147,7 +147,7 @@ struct TunnelwaysApp: App {
         }
 
         @objc private func vpnStateChanged(notification: Notification) {
-            print("vpnStateChanged")
+            Logger.debug("vpnStateChanged")
             let settingsStore = SettingsStore()
             let enableAutoConnection = settingsStore.enableAutoConnection
             let vpnName = settingsStore.vpnName
@@ -251,7 +251,7 @@ struct TunnelwaysApp: App {
         }
 
         @objc private func openPreferencesWindow() {
-            print("open Prefs")
+            Logger.debug("open Prefs")
             if #available(macOS 13, *) {
                 NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
             } else {

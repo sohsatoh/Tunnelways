@@ -19,7 +19,7 @@ struct SettingsView: View {
         .padding(20)
         .frame(minWidth: 300, minHeight: 200)
         .onWillDisappear {
-            print("Settigs closed")
+            Logger.debug("Settigs closed")
             let center = NotificationCenter.default
             let settingsChangedNotification = Notification.Name("jp.soh.Tunnelways.settingsChanged")
             center.post(name: settingsChangedNotification, object: nil)

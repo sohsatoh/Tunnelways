@@ -13,7 +13,7 @@ extension String {
 }
 
 class VPNUtil: NSObject {
-    static let sharedInstance = VPNUtil()
+    static let sharedInstance: VPNUtil = VPNUtil()
 
     private var isAppLaunched: Bool = false
     private var isMonitorStarted: Bool = false
@@ -21,7 +21,7 @@ class VPNUtil: NSObject {
     private var tokens: [NSObjectProtocol] = []
 
     override private init() {
-        print("VPNUtil init")
+        Logger.debug("VPNUtil init")
     }
 
     func registerObservers() {
@@ -92,7 +92,7 @@ class VPNUtil: NSObject {
     }
 
     private func networkStatusChanged() {
-        print("networkStatusChanged")
+        Logger.debug("networkStatusChanged")
 
         let settingsStore = SettingsStore()
         let enableAutoDisconnection = settingsStore.enableAutoDisconnection
@@ -130,11 +130,11 @@ class VPNUtil: NSObject {
         let processName = ProcessInfo.processInfo.processName
         guard let pref = SCPreferencesCreate(kCFAllocatorDefault, processName as CFString, nil)
         else {
-            print("ERROR: Failed to create the SCPreferences object")
+            Logger.debug("ERROR: Failed to create the SCPreferences object")
             return vpnDict
         }
         guard let netServices = SCNetworkServiceCopyAll(pref) as? [SCNetworkService] else {
-            print("ERROR: Failed to obtain network services")
+            Logger.debug("ERROR: Failed to obtain network services")
             return vpnDict
         }
         for netService in netServices {
