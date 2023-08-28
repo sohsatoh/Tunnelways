@@ -173,7 +173,7 @@ class VPNUtil: NSObject {
     }
 
     private func appStatusChanged(launched: Bool) {
-        self.isAppLaunched = true
+        isAppLaunched = launched
         statusChanged()
     }
 
