@@ -27,19 +27,10 @@ class VPNUtil: NSObject {
     }
 
     func registerObservers() {
-        // VPN Notification
-        if monitor.queue == nil {
-            monitor.pathUpdateHandler = { _ in
-                DispatchQueue.main.async {
-                    if self.isMonitorStarted {
-                        self.networkStatusChanged()
-                    }
-                }
-            }
-        }
-        monitor.start(queue: .global(qos: .background))
-        isMonitorStarted = true
+        // Network Status Notification
+        startMonitor()
 
+        // Sleep notification
         DistributedNotificationCenter.default().addObserver(
             self, selector: #selector(sleepListener(_:)), name: .init("com.apple.screenIsLocked"),
             object: nil)
@@ -47,6 +38,7 @@ class VPNUtil: NSObject {
             self, selector: #selector(sleepListener(_:)), name: .init("com.apple.screenIsUnlocked"),
             object: nil)
 
+        // App Status Check
         let settingsStore = SettingsStore()
         let enableAppStatusCheck = settingsStore.enableAppStatusCheck
 
@@ -100,13 +92,32 @@ class VPNUtil: NSObject {
         monitor = NWPathMonitor()
     }
 
+    private func startMonitor() {
+        if monitor.queue == nil {
+            monitor.pathUpdateHandler = { _ in
+                DispatchQueue.main.async {
+                    if self.isMonitorStarted {
+                        self.networkStatusChanged()
+                    }
+                }
+            }
+        }
+        monitor.start(queue: .global(qos: .background))
+        isMonitorStarted = true
+    }
+
+    private func stopMonitor() {
+        monitor.cancel()
+        monitor = NWPathMonitor()
+    }
+
     @objc private func sleepListener(_ aNotification: Notification) {
         if aNotification.name.rawValue == "com.apple.screenIsLocked" {
             Logger.debug("Going to sleep...")
-            unregisterObservers()
-        } else if aNotification.name.rawValue == "com.apple.screenIsLocked" {
+            stopMonitor()
+        } else if aNotification.name.rawValue == "com.apple.screenIsUnlocked" {
             Logger.debug("Woke up...")
-            registerObservers()
+            startMonitor()
         }
     }
 
