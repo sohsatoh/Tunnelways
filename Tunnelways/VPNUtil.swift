@@ -154,7 +154,7 @@ class VPNUtil: NSObject {
 
         let allArraysAreEmpty = filteredIfsAddrs.allSatisfy { addrs in
             addrs.value.allSatisfy { (addr: IPAddr) in
-                !addr.isLoopback && !addr.isMulticast
+                !addr.isLoopback && !addr.isMulticast && !addr.isLinkLocal
             }
         }
         if allArraysAreEmpty {
