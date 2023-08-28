@@ -1,5 +1,7 @@
 # Tunnelways
 
+日本語は[こちら](./README_ja.md)
+
 macOS app that automatically turns VPN on and off based on changes in app and network status
 
 ![Alert](./assets/vpn.png)
@@ -33,4 +35,5 @@ Show an alert based on
 - [] Refactoring
 - [] Add support for IPv6 (status check)
 - [] Better UI
-- [] Alerts shown twice
+- [] Fix alerts shown twice because of the network monitor
+- [] CI/CD
