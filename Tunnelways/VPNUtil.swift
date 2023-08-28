@@ -54,8 +54,7 @@ class VPNUtil: NSObject {
                     as? NSRunningApplication
                 {
                     if app.localizedName?.matches(pattern: applicationName) == true {
-                        self.isAppLaunched = true
-                        self.networkStatusChanged()
+                        self.appStatusChanged(launched: true)
                     }
                 }
             }
@@ -68,8 +67,7 @@ class VPNUtil: NSObject {
                     as? NSRunningApplication
                 {
                     if app.localizedName?.matches(pattern: applicationName) == true {
-                        self.isAppLaunched = false
-                        self.networkStatusChanged()
+                        self.appStatusChanged(launched: false)
                     }
                 }
             }
@@ -121,6 +119,31 @@ class VPNUtil: NSObject {
         }
     }
 
+    private func statusChanged() {
+        let settingsStore = SettingsStore()
+        let enableAutoDisconnection = settingsStore.enableAutoDisconnection
+        let enableBypassForSSID = settingsStore.enableBypassForSSID
+        let ssid = settingsStore.ssid
+        let currentSSID = getSSID()
+        let shouldBypass = enableBypassForSSID && currentSSID.matches(pattern: ssid)
+        let isVPNConnected = isVPNConnected()
+
+        // send notification
+        let center = NotificationCenter.default
+        let notificationName = Notification.Name("jp.soh.Tunnelways.ChangeVPNRequest")
+        guard
+            let obj: VPNRequestType = {
+                if isAppLaunched, !isVPNConnected, !shouldBypass {
+                    return .connectionRequest
+                } else if !isAppLaunched, isVPNConnected, enableAutoDisconnection {
+                    return .disconnectionRequest
+                }
+                return nil
+            }()
+        else { return }
+        center.post(name: notificationName, object: obj)
+    }
+
     private func networkStatusChanged() {
         Logger.debug("networkStatusChanged")
 
@@ -146,28 +169,12 @@ class VPNUtil: NSObject {
             return
         }
 
-        let settingsStore = SettingsStore()
-        let enableAutoDisconnection = settingsStore.enableAutoDisconnection
-        let enableBypassForSSID = settingsStore.enableBypassForSSID
-        let ssid = settingsStore.ssid
-        let currentSSID = getSSID()
-        let shouldBypass = enableBypassForSSID && currentSSID.matches(pattern: ssid)
-        let isVPNConnected = isVPNConnected()
+        statusChanged()
+    }
 
-        // send notification
-        let center = NotificationCenter.default
-        let notificationName = Notification.Name("jp.soh.Tunnelways.ChangeVPNRequest")
-        guard
-            let obj: VPNRequestType = {
-                if isAppLaunched, !isVPNConnected, !shouldBypass {
-                    return .connectionRequest
-                } else if !isAppLaunched, isVPNConnected, enableAutoDisconnection {
-                    return .disconnectionRequest
-                }
-                return nil
-            }()
-        else { return }
-        center.post(name: notificationName, object: obj)
+    private func appStatusChanged(launched: Bool) {
+        self.isAppLaunched = true
+        statusChanged()
     }
 
     func getAllInterfaceIPAddresses() -> OrderedDictionary<String, [IPAddr]> {
